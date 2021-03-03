@@ -31,13 +31,12 @@ public class ValidParentheses {
     public boolean isValid(String s) {
         List<Character> queue = new ArrayList<Character>();
 
+        // Edge cases
+        if (s.length() <= 1 || (s.length() % 2 != 0) || s == null) {
+            return false;
+        }
 
         for (int i = 0; i < s.length(); i++) {
-            // Edge cases
-            if (s.length() <= 1 || (s.length() % 2 != 0) || s == null) {
-                return false;
-            }
-            
             Character currentSign = s.charAt(i);
 
             // if it's an opening sign, enqueue (add to the 'queue' arraylist)
