@@ -44,13 +44,18 @@ public class ValidParentheses {
             {
                 queue.add(currentSign);
             } else {
+                if (queue.size() == 0) {
+                    return false;
+                }
+
                 // if it's not an opening sign then it's a closing sign
                 // then
                 //  1. get reciprocal sign
                 //  2. check if the peek @ queue is the same as the recipical sign
                 //      A. If yes, dequeue (remove the element at peek)
                 //      B. If no, return false (inbalance parenthese)
-                Character reciprocal = getReciprocalSign(currentSign);          
+                Character reciprocal = getReciprocalSign(currentSign);
+                    
                 Character peekAtQueue = queue.get(queue.size() - 1);
 
                 if(peekAtQueue.equals(reciprocal)) {
@@ -59,6 +64,10 @@ public class ValidParentheses {
                     return false;
                 }
             }
+        }
+
+        if (queue.size() >= 1) {
+            return false;
         }
 
         return true;        
@@ -87,9 +96,9 @@ public class ValidParentheses {
     public static void main(String[] args) {
         ValidParentheses vp = new ValidParentheses();
         
-        String paraString1 = "()";
-        Boolean paraTest1 = vp.isValid(paraString1);
-        System.out.println("() | isValid? " + paraTest1);
+        // String paraString1 = "()";
+        // Boolean paraTest1 = vp.isValid(paraString1);
+        // System.out.println("() | isValid? " + paraTest1);
 
         // String paraString2 = "()[]{}";   
         // Boolean paraTest2 = vp.isValid(paraString2);
@@ -106,5 +115,13 @@ public class ValidParentheses {
         // String paraString5 = "{[]}";
         // Boolean paraTest5 = vp.isValid(paraString5);
         // System.out.println("{[]} | isValid? " + paraTest5);
+
+        // String paraString6 = "((";
+        // Boolean paraTest6 = vp.isValid(paraString6);
+        // System.out.println("(( | isValid? " + paraTest6);
+
+        String paraString7 = "))";
+        Boolean paraTest7 = vp.isValid(paraString7);
+        System.out.println(")) | isValid? " + paraTest7);
 	}
 }
